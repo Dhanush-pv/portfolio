@@ -1,239 +1,228 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Mail, Github, MapPin, GraduationCap, Code, ChevronDown, Globe, Briefcase } from 'lucide-react';
-import Profile from "./assets/dhanush.jpeg"
+import Profile from "./assets/dhanush.png"
 
 const translations = {
   de: {
-  nav: {
-    about: 'Über mich',
-    experience: 'Erfahrung',
-    education: 'Bildung',
-    projects: 'Projekte',
-    contact: 'Kontakt'
+    nav: {
+      about: 'Über mich',
+      experience: 'Erfahrung',
+      education: 'Bildung',
+      projects: 'Projekte',
+      contact: 'Kontakt'
+    },
+
+    hero: {
+      greeting: 'Hallo, ich bin',
+      title: 'Dhanush',
+      subtitle: 'Masterstudent für Artificial Intelligence und Robotik in Deutschland mit Schwerpunkt auf Data Engineering, Analytics und Business Intelligence. Erfahrung mit Python, SQL, PySpark, ETL-Pipelines, Datenqualität, AWS und Data Warehousing.',
+      cta: 'Kontaktieren Sie mich'
+    },
+
+    about: {
+      title: 'Wer bin ich?',
+      content: 'Hallo, ich bin Dhanush und studiere derzeit Artificial Intelligence und Robotik in Deutschland.\n\nMein fachlicher Schwerpunkt liegt auf Data Engineering, Datenverarbeitung, Analytics und Business Intelligence. Ich arbeite mit Python, SQL, PySpark, ETL/ELT-Pipelines, Datenqualität, AWS und Data Warehousing.\n\nIch interessiere mich für skalierbare Datenplattformen, Analytics Engineering, zuverlässige Datenpipelines und die Entwicklung datengetriebener Lösungen.',
+      button: 'Mehr über mich'
+    },
+
+    experience: {
+      title: 'Berufserfahrung',
+      description: 'Mehr als 3 Jahre Erfahrung in Data Engineering, Datenverarbeitung, Analytics und Business Intelligence mit Schwerpunkt auf Python, SQL, verteilten Datenverarbeitungssystemen und Cloud-Datenplattformen.',
+      download: 'Lebenslauf herunterladen',
+      jobs: [
+        {
+          title: 'Data Engineer – Analytics & BI',
+          company: 'Jeeves Information Systems (Forterro)',
+          duration: '06/2023 - 01/2025',
+          points: [
+            'Entwickelte skalierbare Spark-ETL-Pipelines mit PySpark und Spark SQL und implementierte komplexe Joins, Window Functions und wiederverwendbare Transformationen für die Batch-Verarbeitung großer Datenmengen.',
+            'Konzipierte cloudbasierte Datenpipelines mit Amazon S3, AWS Glue und Amazon Redshift und transformierte Rohdaten in aufbereitete analytische Datensätze für Reporting und Business Intelligence.',
+            'Entwickelte analytische Datenmodelle und interaktive Power-BI-Dashboards mit SQL und DAX und überführte Geschäftsanforderungen in KPI-Reports und Performance-Kennzahlen.',
+            'Optimierte verteilte Datenverarbeitung und analytische Abfragen durch Partition Pruning, Predicate Pushdown, Broadcast Joins und Execution-Plan-Analyse.',
+            'Implementierte Infrastruktur-Provisionierung, automatisierte Tests und CI/CD-Workflows mit Terraform und GitHub Actions zur Verbesserung von Deployment-Konsistenz und Zuverlässigkeit.'
+          ]
+        },
+        {
+          title: 'Associate Data Engineer',
+          company: 'Jeeves Information Systems (Forterro)',
+          duration: '05/2022 - 06/2023',
+          points: [
+            'Entwickelte Python-basierte ETL-Pipelines zur Datenaufnahme aus mehreren Quellsystemen, zur Datenbereinigung und Validierung sowie zum Laden strukturierter Datensätze in analytische Speichersysteme.',
+            'Erstellte PySpark-Transformationsworkflows zur Verarbeitung großer Datensätze, implementierte Deduplizierung und standardisierte Schemas für zuverlässige Analysen und Reports.',
+            'Führte explorative Datenanalysen mit Python, Pandas und SQL durch und nutzte Aggregationen, Joins und Window Functions zur Erkennung von Datenmustern und Unstimmigkeiten.',
+            'Implementierte automatisierte Datenqualitätsprüfungen, Schema-Validierung und Source-to-Target-Reconciliation zur Verbesserung der Datenkonsistenz und Zuverlässigkeit.'
+          ]
+        }
+      ]
+    },
+
+    education: {
+      title: 'Bildung',
+      items: [
+        {
+          university: 'Hochschule Hof, University of Applied Sciences',
+          year: '2026 - 2028',
+          degree: 'Master in Artificial Intelligence und Robotik'
+        },
+        {
+          university: 'Visvesvaraya Technological University',
+          year: '2018 - 2022',
+          degree: 'Bachelor of Engineering in Information Science'
+        }
+      ]
+    },
+
+    projects: {
+      title: 'Ausgewählte Projekte',
+      items: [
+        {
+          title: 'SupplyChain 360',
+          description: 'Eine Supply-Chain-Analytics-Plattform zur Zusammenführung von Vertriebs-, Bestands-, Lieferanten-, Lager- und Versanddaten. Die Architektur nutzt ETL/ELT-Pipelines und eine Bronze-Silver-Gold-Datenstruktur, um konsistente Analysedaten für Nachfrageanalysen, Bestandsüberwachung und Störungsszenarien bereitzustellen.',
+          stack: ['Python', 'SQL', 'Azure Data Factory', 'Azure Data Lake Storage Gen2', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Event Hubs', 'dbt', 'Power BI']
+        },
+        {
+          title: 'Customer360 Governed Platform',
+          description: 'Eine Customer-Data-Plattform zur Integration von Kundendaten aus mehreren Quellsystemen und zur Erstellung einheitlicher Kundenprofile. Der Schwerpunkt liegt auf Identity Resolution, SCD Type 2, Datenqualität und Data Governance für nachvollziehbare Kunden- und Lifecycle-Analysen.',
+          stack: ['Python', 'SQL', 'Snowflake', 'dbt', 'Apache Airflow', 'PostgreSQL', 'Great Expectations', 'Soda', 'Tableau']
+        },
+        {
+          title: 'Sales Lakehouse Pipeline',
+          description: 'Eine inkrementelle Medallion-Pipeline auf Azure Databricks. Ein Watermark lädt geänderte Zeilen aus PostgreSQL in Bronze, ein MERGE hält je Kunde den neuesten Datensatz in Silver, und Gold aggregiert den Umsatz je Region. Datenqualitätsprüfungen zwischen den Schichten lassen den Workflow bei fehlerhaften Daten fehlschlagen; Secrets, Tests und CI/CD mit Databricks Asset Bundles machen Deployments wiederholbar.',
+          stack: ['Python', 'SQL', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Databricks Workflows', 'Databricks Asset Bundles', 'PostgreSQL', 'GitHub Actions', 'pytest']
+        },
+        {
+          title: 'FraudWatch+',
+          description: 'Eine ereignisgesteuerte Plattform zur Erkennung verdächtiger Finanztransaktionen. Sie kombiniert Change Data Capture, Streaming-Verarbeitung, regelbasierte Erkennung und Machine-Learning-Modelle mit Lakehouse-Datenverarbeitung und beziehungsbasierter Betrugsanalyse. Die Repository-Version umfasst 33 bestandene automatisierte Tests.',
+          stack: ['Python', 'SQL', 'PostgreSQL', 'Debezium', 'Redpanda', 'Spark Structured Streaming', 'Apache Iceberg', 'dbt', 'MLflow', 'scikit-learn', 'Neo4j', 'Docker']
+        },
+        {
+          title: 'Scale and Cost Benchmark Lab',
+          description: 'Ein Benchmarking-Framework zum Vergleich analytischer Datenbank- und Processing-Engines anhand gemeinsamer SQL-Workloads. Wiederverwendbare Engine-Adapter und Konfigurationen schaffen eine Grundlage zur Untersuchung von Abfrageausführungszeiten, Ressourcenverbrauch, Skalierbarkeit und Kostenaspekten.',
+          stack: ['Python', 'SQL', 'DuckDB', 'ClickHouse', 'Apache Spark', 'Docker', 'Parquet', 'pytest', 'GitHub Actions']
+        }
+      ]
+    },
+
+    contact: {
+      title: 'Kontakt',
+      phone: 'Telefonnummer',
+      email: 'E-Mail',
+      location: 'Standort',
+      locationValue: 'Deutschland',
+      button: 'Nachricht senden'
+    }
   },
 
-  hero: {
-    greeting: 'Hallo, ich bin',
-    title: 'Dhanush',
-    subtitle: 'Masterstudent für Artificial Intelligence und Robotik in Deutschland mit Schwerpunkt auf Data Engineering, Analytics und Business Intelligence. Erfahrung mit Python, SQL, PySpark, ETL-Pipelines, Datenqualität, AWS und Data Warehousing.',
-    cta: 'Kontaktieren Sie mich'
-  },
-
-  about: {
-    title: 'Wer bin ich?',
-    content: 'Hallo, ich bin Dhanush und studiere derzeit Artificial Intelligence und Robotik in Deutschland.\n\nMein fachlicher Schwerpunkt liegt auf Data Engineering, Datenverarbeitung, Analytics und Business Intelligence. Ich arbeite mit Python, SQL, PySpark, ETL/ELT-Pipelines, Datenqualität, AWS und Data Warehousing.\n\nIch interessiere mich für skalierbare Datenplattformen, Analytics Engineering, zuverlässige Datenpipelines und die Entwicklung datengetriebener Lösungen.',
-    button: 'Mehr über mich'
-  },
-
-  experience: {
-    title: 'Berufserfahrung',
-    description: 'Mehr als 3 Jahre Erfahrung in Data Engineering, Datenverarbeitung, Analytics und Business Intelligence mit Schwerpunkt auf Python, SQL, verteilten Datenverarbeitungssystemen und Cloud-Datenplattformen.',
-    download: 'Lebenslauf herunterladen',
-    jobs: [
-      {
-        title: 'Associate Data Engineer',
-        company: 'Jeeves Information Systems (Forterro)',
-        duration: '05/2022 - 01/2025',
-        points: [
-          'Entwickelte Python-basierte ETL-Pipelines zur Datenaufnahme aus mehreren Quellsystemen, zur Datenbereinigung und Validierung sowie zum Laden strukturierter Datensätze in analytische Speichersysteme.',
-          'Erstellte PySpark-Transformationsworkflows zur Verarbeitung großer Datensätze, implementierte Deduplizierung und standardisierte Schemas für zuverlässige Analysen und Reports.',
-          'Führte explorative Datenanalysen mit Python, Pandas und SQL durch und nutzte Aggregationen, Joins und Window Functions zur Erkennung von Datenmustern und Unstimmigkeiten.',
-          'Implementierte automatisierte Datenqualitätsprüfungen, Schema-Validierung und Source-to-Target-Reconciliation zur Verbesserung der Datenkonsistenz und Zuverlässigkeit.'
-        ]
-      },
-      {
-        title: 'Data Engineer – Analytics & BI',
-        company: 'Jeeves Information Systems (Forterro)',
-        duration: '05/2022 - 01/2025',
-        points: [
-          'Entwickelte skalierbare Spark-ETL-Pipelines mit PySpark und Spark SQL und implementierte komplexe Joins, Window Functions und wiederverwendbare Transformationen für die Batch-Verarbeitung großer Datenmengen.',
-          'Konzipierte cloudbasierte Datenpipelines mit Amazon S3, AWS Glue und Amazon Redshift und transformierte Rohdaten in aufbereitete analytische Datensätze für Reporting und Business Intelligence.',
-          'Entwickelte analytische Datenmodelle und interaktive Power-BI-Dashboards mit SQL und DAX und überführte Geschäftsanforderungen in KPI-Reports und Performance-Kennzahlen.',
-          'Optimierte verteilte Datenverarbeitung und analytische Abfragen durch Partition Pruning, Predicate Pushdown, Broadcast Joins und Execution-Plan-Analyse.',
-          'Implementierte Infrastruktur-Provisionierung, automatisierte Tests und CI/CD-Workflows mit Terraform und GitHub Actions zur Verbesserung von Deployment-Konsistenz und Zuverlässigkeit.'
-        ]
-      }
-    ]
-  },
-
-  education: {
-    title: 'Bildung',
-    items: [
-      {
-        university: 'Hochschule Hof, University of Applied Sciences',
-        year: '2026 - 2028',
-        degree: 'Master in Artificial Intelligence und Robotik'
-      },
-      {
-        university: 'Visvesvaraya Technological University',
-        year: '2018 - 2022',
-        degree: 'Bachelor of Engineering in Information Science'
-      }
-    ]
-  },
-
-  projects: {
-    title: 'Ausgewählte Projekte',
-    items: [
-      {
-        title: 'SupplyChain 360',
-        description: 'Eine Supply-Chain-Analytics-Plattform zur Zusammenführung von Vertriebs-, Bestands-, Lieferanten-, Lager- und Versanddaten. Die Architektur nutzt ETL/ELT-Pipelines und eine Bronze-Silver-Gold-Datenstruktur, um konsistente Analysedaten für Nachfrageanalysen, Bestandsüberwachung und Störungsszenarien bereitzustellen.',
-        stack: ['Python', 'SQL', 'Azure Data Factory', 'Azure Data Lake Storage Gen2', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Event Hubs', 'dbt', 'Power BI']
-      },
-      {
-        title: 'Customer360 Governed Platform',
-        description: 'Eine Customer-Data-Plattform zur Integration von Kundendaten aus mehreren Quellsystemen und zur Erstellung einheitlicher Kundenprofile. Der Schwerpunkt liegt auf Identity Resolution, SCD Type 2, Datenqualität und Data Governance für nachvollziehbare Kunden- und Lifecycle-Analysen.',
-        stack: ['Python', 'SQL', 'Snowflake', 'dbt', 'Apache Airflow', 'PostgreSQL', 'Great Expectations', 'Soda', 'Tableau']
-      },
-      {
-        title: 'FraudWatch+',
-        description: 'Eine ereignisgesteuerte Plattform zur Erkennung verdächtiger Finanztransaktionen. Sie kombiniert Change Data Capture, Streaming-Verarbeitung, regelbasierte Erkennung und Machine-Learning-Modelle mit Lakehouse-Datenverarbeitung und beziehungsbasierter Betrugsanalyse. Die Repository-Version umfasst 33 bestandene automatisierte Tests.',
-        stack: ['Python', 'SQL', 'PostgreSQL', 'Debezium', 'Redpanda', 'Spark Structured Streaming', 'Apache Iceberg', 'dbt', 'MLflow', 'scikit-learn', 'Neo4j', 'Docker']
-      },
-      {
-        title: 'Scale and Cost Benchmark Lab',
-        description: 'Ein Benchmarking-Framework zum Vergleich analytischer Datenbank- und Processing-Engines anhand gemeinsamer SQL-Workloads. Wiederverwendbare Engine-Adapter und Konfigurationen schaffen eine Grundlage zur Untersuchung von Abfrageausführungszeiten, Ressourcenverbrauch, Skalierbarkeit und Kostenaspekten.',
-        stack: ['Python', 'SQL', 'DuckDB', 'ClickHouse', 'Apache Spark', 'Docker', 'Parquet', 'pytest', 'GitHub Actions']
-      },
-      {
-        title: 'Conversational Analytics',
-        description: 'Eine Conversational-BI-Anwendung, die natürlichsprachliche Geschäftsfragen in SQL-Abfragen überführt und strukturierte Analyseergebnisse bereitstellt. Die Lösung umfasst eine FastAPI-Backend-API, Schema- und Metrikkontext, SQL-Validierung mit Read-only-Regeln sowie Datenbankadapter und eine React-basierte Oberfläche.',
-        stack: ['Python', 'FastAPI', 'SQL', 'SQLGlot', 'PostgreSQL', 'DuckDB', 'React', 'TypeScript', 'Docker', 'pytest']
-      },
-      {
-        title: 'AI Guardrails Gateway',
-        description: 'Ein Sicherheits-Gateway für Anwendungen mit Large Language Models (LLMs). Es prüft Prompts anhand von Sicherheitsrichtlinien und umfasst Heuristiken zur Erkennung von Prompt Injection, PII-Erkennung und -Redaktion, Authentifizierung, Rate Limiting, Output-Validierung und Audit-Komponenten. Die Repository-Version umfasst 8 bestandene automatisierte Tests.',
-        stack: ['Python', 'FastAPI', 'Redis', 'PostgreSQL', 'Presidio integration', 'Prometheus', 'Docker', 'pytest']
-      }
-    ]
-  },
-
-  contact: {
-    title: 'Kontakt',
-    phone: 'Telefonnummer',
-    email: 'E-Mail',
-    location: 'Standort',
-    locationValue: 'Deutschland',
-    button: 'Nachricht senden'
-  }
-},
-  
   en: {
-  nav: {
-    about: 'About',
-    experience: 'Experience',
-    education: 'Education',
-    projects: 'Projects',
-    contact: 'Contact'
-  },
+    nav: {
+      about: 'About',
+      experience: 'Experience',
+      education: 'Education',
+      projects: 'Projects',
+      contact: 'Contact'
+    },
 
-  hero: {
-    greeting: 'Hello, I am',
-    title: 'Dhanush',
-    subtitle: 'Master’s student in Artificial Intelligence and Robotics in Germany, focused on Data Engineering, Analytics and Business Intelligence. Experienced with Python, SQL, PySpark, ETL pipelines, data quality, AWS and data warehousing.',
-    cta: 'Contact Me'
-  },
+    hero: {
+      greeting: 'Hello, I am',
+      title: 'Dhanush',
+      subtitle: 'Master’s student in Artificial Intelligence and Robotics in Germany, focused on Data Engineering, Analytics and Business Intelligence. Experienced with Python, SQL, PySpark, ETL pipelines, data quality, AWS and data warehousing.',
+      cta: 'Contact Me'
+    },
 
-  about: {
-    title: 'Who am I?',
-    content: 'Hi, I’m Dhanush, currently pursuing a Master’s in Artificial Intelligence and Robotics in Germany.\n\nMy professional focus is Data Engineering, data processing, Analytics and Business Intelligence. My technical areas include Python, SQL, PySpark, ETL/ELT pipelines, data quality, AWS and data warehousing.\n\nI am interested in building scalable data platforms, reliable data pipelines and analytics solutions that turn operational data into actionable insights.',
-    button: 'More About Me'
-  },
+    about: {
+      title: 'Who am I?',
+      content: 'Hi, I’m Dhanush, currently pursuing a Master’s in Artificial Intelligence and Robotics in Germany.\n\nMy professional focus is Data Engineering, data processing, Analytics and Business Intelligence. My technical areas include Python, SQL, PySpark, ETL/ELT pipelines, data quality, AWS and data warehousing.\n\nI am interested in building scalable data platforms, reliable data pipelines and analytics solutions that turn operational data into actionable insights.',
+      button: 'More About Me'
+    },
 
-  experience: {
-    title: 'Professional Experience',
-    description: '3+ years of experience across data engineering, data processing, analytics and business intelligence, with a focus on Python, SQL, distributed data processing and cloud data platforms.',
-    download: 'Download Resume',
-    jobs: [
-      {
-        title: 'Associate Data Engineer',
-        company: 'Jeeves Information Systems (Forterro)',
-        duration: '05/2022 - 01/2025',
-        points: [
-          'Developed Python-based ETL pipelines to ingest data from multiple source systems, perform data cleansing and validation, and load structured datasets into analytical storage.',
-          'Built PySpark transformation workflows to process large datasets, implement deduplication and standardise schemas, preparing reliable datasets for downstream analytics and reporting.',
-          'Performed exploratory data analysis using Python, Pandas and SQL, applying aggregations, joins and window functions to identify data patterns, investigate discrepancies and generate actionable insights.',
-          'Implemented automated data quality checks, schema validation and source-to-target reconciliation to improve data consistency and reliability across processing workflows.'
-        ]
-      },
-      {
-        title: 'Data Engineer – Analytics & BI',
-        company: 'Jeeves Information Systems (Forterro)',
-        duration: '05/2022 - 01/2025',
-        points: [
-          'Developed scalable Spark ETL pipelines using PySpark and Spark SQL, implementing complex joins, window functions and reusable transformations for large-scale batch data processing.',
-          'Designed cloud-based data pipelines integrating Amazon S3, AWS Glue and Amazon Redshift, transforming raw data into curated analytical datasets for reporting and business intelligence.',
-          'Developed analytical data models and interactive Power BI dashboards using SQL and DAX, translating business requirements into KPI reports, performance metrics and business insights.',
-          'Optimised distributed data processing and analytical queries through partition pruning, predicate pushdown, broadcast joins and execution-plan analysis to improve pipeline and reporting performance.',
-          'Implemented infrastructure provisioning, automated testing and CI/CD workflows using Terraform and GitHub Actions to improve deployment consistency, scalability and reliability.'
-        ]
-      }
-    ]
-  },
+    experience: {
+      title: 'Professional Experience',
+      description: '3+ years of experience across data engineering, data processing, analytics and business intelligence, with a focus on Python, SQL, distributed data processing and cloud data platforms.',
+      download: 'Download Resume',
+      jobs: [
+        {
+          title: 'Data Engineer – Analytics & BI',
+          company: 'Jeeves Information Systems (Forterro)',
+          duration: '06/2023 - 01/2025',
+          points: [
+            'Developed scalable Spark ETL pipelines using PySpark and Spark SQL, implementing complex joins, window functions and reusable transformations for large-scale batch data processing.',
+            'Designed cloud-based data pipelines integrating Amazon S3, AWS Glue and Amazon Redshift, transforming raw data into curated analytical datasets for reporting and business intelligence.',
+            'Developed analytical data models and interactive Power BI dashboards using SQL and DAX, translating business requirements into KPI reports, performance metrics and business insights.',
+            'Optimised distributed data processing and analytical queries through partition pruning, predicate pushdown, broadcast joins and execution-plan analysis to improve pipeline and reporting performance.',
+            'Implemented infrastructure provisioning, automated testing and CI/CD workflows using Terraform and GitHub Actions to improve deployment consistency, scalability and reliability.'
+          ]
+        },
+        {
+          title: 'Associate Data Engineer',
+          company: 'Jeeves Information Systems (Forterro)',
+          duration: '05/2022 - 06/2023',
+          points: [
+            'Developed Python-based ETL pipelines to ingest data from multiple source systems, perform data cleansing and validation, and load structured datasets into analytical storage.',
+            'Built PySpark transformation workflows to process large datasets, implement deduplication and standardise schemas, preparing reliable datasets for downstream analytics and reporting.',
+            'Performed exploratory data analysis using Python, Pandas and SQL, applying aggregations, joins and window functions to identify data patterns, investigate discrepancies and generate actionable insights.',
+            'Implemented automated data quality checks, schema validation and source-to-target reconciliation to improve data consistency and reliability across processing workflows.'
+          ]
+        }
+      ]
+    },
 
-  education: {
-    title: 'Education',
-    items: [
-      {
-        university: 'Hochschule Hof, University of Applied Sciences',
-        year: '2026 - 2028',
-        degree: 'Master’s in Artificial Intelligence and Robotics'
-      },
-      {
-        university: 'Visvesvaraya Technological University',
-        year: '2018 - 2022',
-        degree: 'Bachelor of Engineering in Information Science'
-      }
-    ]
-  },
+    education: {
+      title: 'Education',
+      items: [
+        {
+          university: 'Hochschule Hof, University of Applied Sciences',
+          year: '2026 - 2028',
+          degree: 'Master’s in Artificial Intelligence and Robotics'
+        },
+        {
+          university: 'Visvesvaraya Technological University',
+          year: '2018 - 2022',
+          degree: 'Bachelor of Engineering in Information Science'
+        }
+      ]
+    },
 
-  projects: {
-    title: 'Selected Projects',
-    items: [
-      {
-        title: 'SupplyChain 360',
-        description: 'A supply chain analytics platform consolidating sales, inventory, supplier, warehouse and shipment data. Its ETL/ELT workflows and Bronze-Silver-Gold data architecture prepare consistent analytical datasets for demand analysis, inventory monitoring and disruption scenario analysis.',
-        stack: ['Python', 'SQL', 'Azure Data Factory', 'Azure Data Lake Storage Gen2', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Event Hubs', 'dbt', 'Power BI']
-      },
-      {
-        title: 'Customer360 Governed Platform',
-        description: 'A customer data platform integrating records from multiple source systems into unified customer profiles. The implementation focuses on identity resolution, SCD Type 2 historical tracking, data quality and data governance to support traceable customer and lifecycle analytics.',
-        stack: ['Python', 'SQL', 'Snowflake', 'dbt', 'Apache Airflow', 'PostgreSQL', 'Great Expectations', 'Soda', 'Tableau']
-      },
-      {
-        title: 'FraudWatch+',
-        description: 'An event-driven financial fraud detection platform for processing transactions and identifying suspicious activity. It combines Change Data Capture, streaming data processing, rule-based detection and machine-learning models with lakehouse processing and graph-based fraud analysis. The repository version includes 33 passing automated tests.',
-        stack: ['Python', 'SQL', 'PostgreSQL', 'Debezium', 'Redpanda', 'Spark Structured Streaming', 'Apache Iceberg', 'dbt', 'MLflow', 'scikit-learn', 'Neo4j', 'Docker']
-      },
-      {
-        title: 'Scale and Cost Benchmark Lab',
-        description: 'A benchmarking framework comparing analytical database and processing engines across common SQL workloads. Reusable engine adapters and workload configurations provide a foundation for examining query execution time, resource utilisation, scalability and cost considerations.',
-        stack: ['Python', 'SQL', 'DuckDB', 'ClickHouse', 'Apache Spark', 'Docker', 'Parquet', 'pytest', 'GitHub Actions']
-      },
-      {
-        title: 'Conversational Analytics',
-        description: 'A conversational BI application translating natural-language business questions into SQL queries and structured analytical results. It includes a FastAPI backend, schema and metric context, SQL validation with read-only restrictions, database adapters and a React-based interface.',
-        stack: ['Python', 'FastAPI', 'SQL', 'SQLGlot', 'PostgreSQL', 'DuckDB', 'React', 'TypeScript', 'Docker', 'pytest']
-      },
-      {
-        title: 'AI Guardrails Gateway',
-        description: 'A security gateway for applications using Large Language Models (LLMs). It screens prompts against security policies and includes prompt-injection detection heuristics, PII detection and redaction, authentication, rate limiting, output validation and audit components. The repository version includes 8 passing automated tests.',
-        stack: ['Python', 'FastAPI', 'Redis', 'PostgreSQL', 'Presidio integration', 'Prometheus', 'Docker', 'pytest']
-      }
-    ]
-  },
+    projects: {
+      title: 'Selected Projects',
+      items: [
+        {
+          title: 'SupplyChain 360',
+          description: 'A supply chain analytics platform consolidating sales, inventory, supplier, warehouse and shipment data. Its ETL/ELT workflows and Bronze-Silver-Gold data architecture prepare consistent analytical datasets for demand analysis, inventory monitoring and disruption scenario analysis.',
+          stack: ['Python', 'SQL', 'Azure Data Factory', 'Azure Data Lake Storage Gen2', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Event Hubs', 'dbt', 'Power BI']
+        },
+        {
+          title: 'Customer360 Governed Platform',
+          description: 'A customer data platform integrating records from multiple source systems into unified customer profiles. The implementation focuses on identity resolution, SCD Type 2 historical tracking, data quality and data governance to support traceable customer and lifecycle analytics.',
+          stack: ['Python', 'SQL', 'Snowflake', 'dbt', 'Apache Airflow', 'PostgreSQL', 'Great Expectations', 'Soda', 'Tableau']
+        },
+        {
+          title: 'Sales Lakehouse Pipeline',
+          description: 'An incremental Medallion pipeline on Azure Databricks. A watermark loads changed rows from PostgreSQL into Bronze, a MERGE keeps the latest record per customer in Silver, and Gold aggregates sales by region. Data-quality gates between layers fail the workflow on bad data, while secrets, tests and CI/CD with Databricks Asset Bundles keep deployments repeatable.',
+          stack: ['Python', 'SQL', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Databricks Workflows', 'Databricks Asset Bundles', 'PostgreSQL', 'GitHub Actions', 'pytest']
+        },
+        {
+          title: 'FraudWatch+',
+          description: 'An event-driven financial fraud detection platform for processing transactions and identifying suspicious activity. It combines Change Data Capture, streaming data processing, rule-based detection and machine-learning models with lakehouse processing and graph-based fraud analysis. The repository version includes 33 passing automated tests.',
+          stack: ['Python', 'SQL', 'PostgreSQL', 'Debezium', 'Redpanda', 'Spark Structured Streaming', 'Apache Iceberg', 'dbt', 'MLflow', 'scikit-learn', 'Neo4j', 'Docker']
+        },
+        {
+          title: 'Scale and Cost Benchmark Lab',
+          description: 'A benchmarking framework comparing analytical database and processing engines across common SQL workloads. Reusable engine adapters and workload configurations provide a foundation for examining query execution time, resource utilisation, scalability and cost considerations.',
+          stack: ['Python', 'SQL', 'DuckDB', 'ClickHouse', 'Apache Spark', 'Docker', 'Parquet', 'pytest', 'GitHub Actions']
+        }
+      ]
+    },
 
-  contact: {
-    title: 'Contact Dhanush',
-    phone: 'Phone Number',
-    email: 'Email',
-    location: 'Location',
-    locationValue: 'Germany',
-    button: 'Send Message'
+    contact: {
+      title: 'Contact Dhanush',
+      phone: 'Phone Number',
+      email: 'Email',
+      location: 'Location',
+      locationValue: 'Germany',
+      button: 'Send Message'
+    }
   }
-}
-  
 };
 
 export default function Portfolio() {
@@ -448,17 +437,17 @@ export default function Portfolio() {
                 }}
                 className="relative w-full max-w-md mx-auto"
               >
-             <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl bg-white flex items-center justify-center">
-  <div className="w-full h-full p-4 flex items-center justify-center">
-    <div className="w-full h-full rounded-2xl overflow-hidden">
-      <img 
-        src={Profile} 
-        alt="Profilbild" 
-        className="w-full h-full object-cover"
-      />
-    </div>
-  </div>
-</div>
+                <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl bg-white flex items-center justify-center">
+                  <div className="w-full h-full p-4 flex items-center justify-center">
+                    <div className="w-full h-full rounded-2xl overflow-hidden">
+                      <img
+                        src={Profile}
+                        alt="Profilbild"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
 
                 <motion.div
                   animate={{
@@ -510,8 +499,6 @@ export default function Portfolio() {
             <motion.a
               variants={fadeInUpVariants}
               href="#experience"
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all duration-300 hover:scale-105"
             >
               {t.about.button}
@@ -750,17 +737,17 @@ export default function Portfolio() {
                 }}
                 className="relative w-full max-w-md mx-auto"
               >
-               <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl bg-white flex items-center justify-center">
-  <div className="w-full h-full p-4 flex items-center justify-center">
-    <div className="w-full h-full rounded-2xl overflow-hidden">
-      <img 
-        src={Profile} 
-        alt="Profilbild" 
-        className="w-full h-full object-cover"
-      />
-    </div>
-  </div>
-</div>
+                <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl bg-white flex items-center justify-center">
+                  <div className="w-full h-full p-4 flex items-center justify-center">
+                    <div className="w-full h-full rounded-2xl overflow-hidden">
+                      <img
+                        src={Profile}
+                        alt="Profilbild"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
 
                 <motion.div
                   animate={{
@@ -792,9 +779,9 @@ export default function Portfolio() {
             <div className="text-center md:text-left">
               <p className="text-2xl font-bold text-gray-900 mb-2">Dhanush</p>
               <p className="text-gray-600">
-                {language === 'de' 
-                  ? 'Entwicklerin, Designerin & Problemlöserin' 
-                  : 'Developer, Designer & Problem Solver'}
+                {language === 'de'
+                  ? 'Data Engineer mit Schwerpunkt Analytics & Business Intelligence'
+                  : 'Data Engineer focused on Analytics & Business Intelligence'}
               </p>
             </div>
 
@@ -823,7 +810,7 @@ export default function Portfolio() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-8 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm"
           >
-            <p>© 2025 Dhanush Palani Vijay Kumari. {language === 'de' ? 'Alle Rechte vorbehalten.' : 'All rights reserved.'}</p>
+            <p>© 2026 Dhanush Palani Vijay Kumari. {language === 'de' ? 'Alle Rechte vorbehalten.' : 'All rights reserved.'}</p>
           </motion.div>
         </div>
       </footer>
