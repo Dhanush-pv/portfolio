@@ -97,6 +97,11 @@ const translations = {
           stack: ['Python', 'SQL', 'PostgreSQL', 'Debezium', 'Redpanda', 'Spark Structured Streaming', 'Apache Iceberg', 'dbt', 'MLflow', 'scikit-learn', 'Neo4j', 'Docker']
         },
         {
+          title: 'BankRisk Intelligence',
+          description: 'Ein Analyseprojekt zu Bankenrisiken auf Basis frei verfügbarer Daten: vierteljährliche FDIC-Bankkennzahlen, makroökonomische FRED-Reihen und SEC-EDGAR-Einreichungen. Die Ingestion-Schicht speichert die Rohdaten der APIs unverändert mit Prüfsummen-Manifesten; dbt-Metrikdefinitionen, Quellenabgleich und ein Power-BI-Dashboard zum Vergleich der Banken mit Zinsniveau und Kreditqualität sind in Arbeit.',
+          stack: ['Python', 'SQL', 'DuckDB', 'dbt', 'Power BI', 'FRED API', 'FDIC BankFind API', 'SEC EDGAR', 'GitHub Actions', 'pytest']
+        },
+        {
           title: 'Scale and Cost Benchmark Lab',
           description: 'Ein Benchmarking-Framework zum Vergleich analytischer Datenbank- und Processing-Engines anhand gemeinsamer SQL-Workloads. Wiederverwendbare Engine-Adapter und Konfigurationen schaffen eine Grundlage zur Untersuchung von Abfrageausführungszeiten, Ressourcenverbrauch, Skalierbarkeit und Kostenaspekten.',
           stack: ['Python', 'SQL', 'DuckDB', 'ClickHouse', 'Apache Spark', 'Docker', 'Parquet', 'pytest', 'GitHub Actions']
@@ -205,6 +210,11 @@ const translations = {
           title: 'FraudWatch+',
           description: 'An event-driven financial fraud detection platform for processing transactions and identifying suspicious activity. It combines Change Data Capture, streaming data processing, rule-based detection and machine-learning models with lakehouse processing and graph-based fraud analysis. The repository version includes 33 passing automated tests.',
           stack: ['Python', 'SQL', 'PostgreSQL', 'Debezium', 'Redpanda', 'Spark Structured Streaming', 'Apache Iceberg', 'dbt', 'MLflow', 'scikit-learn', 'Neo4j', 'Docker']
+        },
+        {
+          title: 'BankRisk Intelligence',
+          description: 'A banking risk analytics project built on free public data: FDIC quarterly bank financials, FRED macroeconomic series and SEC EDGAR filings. The ingestion layer stores raw API responses unchanged with checksum manifests; dbt metric definitions, source reconciliation and a Power BI dashboard comparing banks against interest rates and credit quality are in progress.',
+          stack: ['Python', 'SQL', 'DuckDB', 'dbt', 'Power BI', 'FRED API', 'FDIC BankFind API', 'SEC EDGAR', 'GitHub Actions', 'pytest']
         },
         {
           title: 'Scale and Cost Benchmark Lab',
