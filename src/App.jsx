@@ -75,34 +75,41 @@ const translations = {
 
     projects: {
       title: 'Ausgewählte Projekte',
+      viewCode: 'Code auf GitHub ansehen',
       items: [
         {
           title: 'SupplyChain 360',
+          url: 'https://github.com/Dhanush-pv/SupplyChain-360',
           description: 'Eine Supply-Chain-Analytics-Plattform zur Zusammenführung von Vertriebs-, Bestands-, Lieferanten-, Lager- und Versanddaten. Die Architektur nutzt ETL/ELT-Pipelines und eine Bronze-Silver-Gold-Datenstruktur, um konsistente Analysedaten für Nachfrageanalysen, Bestandsüberwachung und Störungsszenarien bereitzustellen.',
           stack: ['Python', 'SQL', 'Azure Data Factory', 'Azure Data Lake Storage Gen2', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Event Hubs', 'dbt', 'Power BI']
         },
         {
           title: 'Customer360 Governed Platform',
+          url: 'https://github.com/Dhanush-pv/Customer360',
           description: 'Eine Customer-Data-Plattform zur Integration von Kundendaten aus mehreren Quellsystemen und zur Erstellung einheitlicher Kundenprofile. Der Schwerpunkt liegt auf Identity Resolution, SCD Type 2, Datenqualität und Data Governance für nachvollziehbare Kunden- und Lifecycle-Analysen.',
           stack: ['Python', 'SQL', 'Snowflake', 'dbt', 'Apache Airflow', 'PostgreSQL', 'Great Expectations', 'Soda', 'Tableau']
         },
         {
           title: 'Sales Lakehouse Pipeline',
+          url: 'https://github.com/Dhanush-pv/sales-lakehouse-pipeline',
           description: 'Eine inkrementelle Medallion-Pipeline auf Azure Databricks. Ein Watermark lädt geänderte Zeilen aus PostgreSQL in Bronze, ein MERGE hält je Kunde den neuesten Datensatz in Silver, und Gold aggregiert den Umsatz je Region. Datenqualitätsprüfungen zwischen den Schichten lassen den Workflow bei fehlerhaften Daten fehlschlagen; Secrets, Tests und CI/CD mit Databricks Asset Bundles machen Deployments wiederholbar.',
           stack: ['Python', 'SQL', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Databricks Workflows', 'Databricks Asset Bundles', 'PostgreSQL', 'GitHub Actions', 'pytest']
         },
         {
           title: 'FraudWatch+',
+          url: 'https://github.com/Dhanush-pv/FraudWatch',
           description: 'Eine ereignisgesteuerte Plattform zur Erkennung verdächtiger Finanztransaktionen. Sie kombiniert Change Data Capture, Streaming-Verarbeitung, regelbasierte Erkennung und Machine-Learning-Modelle mit Lakehouse-Datenverarbeitung und beziehungsbasierter Betrugsanalyse. Die Repository-Version umfasst 33 bestandene automatisierte Tests.',
           stack: ['Python', 'SQL', 'PostgreSQL', 'Debezium', 'Redpanda', 'Spark Structured Streaming', 'Apache Iceberg', 'dbt', 'MLflow', 'scikit-learn', 'Neo4j', 'Docker']
         },
         {
           title: 'BankRisk Intelligence',
+          url: 'https://github.com/Dhanush-pv/BankRisk-Intelligence',
           description: 'Ein Analyseprojekt zu Bankenrisiken auf Basis frei verfügbarer Daten: vierteljährliche FDIC-Bankkennzahlen, makroökonomische FRED-Reihen und SEC-EDGAR-Einreichungen. Die Ingestion-Schicht speichert die Rohdaten der APIs unverändert mit Prüfsummen-Manifesten; dbt-Metrikdefinitionen, Quellenabgleich und ein Power-BI-Dashboard zum Vergleich der Banken mit Zinsniveau und Kreditqualität sind in Arbeit.',
           stack: ['Python', 'SQL', 'DuckDB', 'dbt', 'Power BI', 'FRED API', 'FDIC BankFind API', 'SEC EDGAR', 'GitHub Actions', 'pytest']
         },
         {
           title: 'Scale and Cost Benchmark Lab',
+          url: 'https://github.com/Dhanush-pv/Scale-and-Cost-Benchmark-Lab',
           description: 'Ein Benchmarking-Framework zum Vergleich analytischer Datenbank- und Processing-Engines anhand gemeinsamer SQL-Workloads. Wiederverwendbare Engine-Adapter und Konfigurationen schaffen eine Grundlage zur Untersuchung von Abfrageausführungszeiten, Ressourcenverbrauch, Skalierbarkeit und Kostenaspekten.',
           stack: ['Python', 'SQL', 'DuckDB', 'ClickHouse', 'Apache Spark', 'Docker', 'Parquet', 'pytest', 'GitHub Actions']
         }
@@ -190,34 +197,41 @@ const translations = {
 
     projects: {
       title: 'Selected Projects',
+      viewCode: 'View on GitHub',
       items: [
         {
           title: 'SupplyChain 360',
+          url: 'https://github.com/Dhanush-pv/SupplyChain-360',
           description: 'A supply chain analytics platform consolidating sales, inventory, supplier, warehouse and shipment data. Its ETL/ELT workflows and Bronze-Silver-Gold data architecture prepare consistent analytical datasets for demand analysis, inventory monitoring and disruption scenario analysis.',
           stack: ['Python', 'SQL', 'Azure Data Factory', 'Azure Data Lake Storage Gen2', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Event Hubs', 'dbt', 'Power BI']
         },
         {
           title: 'Customer360 Governed Platform',
+          url: 'https://github.com/Dhanush-pv/Customer360',
           description: 'A customer data platform integrating records from multiple source systems into unified customer profiles. The implementation focuses on identity resolution, SCD Type 2 historical tracking, data quality and data governance to support traceable customer and lifecycle analytics.',
           stack: ['Python', 'SQL', 'Snowflake', 'dbt', 'Apache Airflow', 'PostgreSQL', 'Great Expectations', 'Soda', 'Tableau']
         },
         {
           title: 'Sales Lakehouse Pipeline',
+          url: 'https://github.com/Dhanush-pv/sales-lakehouse-pipeline',
           description: 'An incremental Medallion pipeline on Azure Databricks. A watermark loads changed rows from PostgreSQL into Bronze, a MERGE keeps the latest record per customer in Silver, and Gold aggregates sales by region. Data-quality gates between layers fail the workflow on bad data, while secrets, tests and CI/CD with Databricks Asset Bundles keep deployments repeatable.',
           stack: ['Python', 'SQL', 'Azure Databricks', 'PySpark', 'Delta Lake', 'Databricks Workflows', 'Databricks Asset Bundles', 'PostgreSQL', 'GitHub Actions', 'pytest']
         },
         {
           title: 'FraudWatch+',
+          url: 'https://github.com/Dhanush-pv/FraudWatch',
           description: 'An event-driven financial fraud detection platform for processing transactions and identifying suspicious activity. It combines Change Data Capture, streaming data processing, rule-based detection and machine-learning models with lakehouse processing and graph-based fraud analysis. The repository version includes 33 passing automated tests.',
           stack: ['Python', 'SQL', 'PostgreSQL', 'Debezium', 'Redpanda', 'Spark Structured Streaming', 'Apache Iceberg', 'dbt', 'MLflow', 'scikit-learn', 'Neo4j', 'Docker']
         },
         {
           title: 'BankRisk Intelligence',
+          url: 'https://github.com/Dhanush-pv/BankRisk-Intelligence',
           description: 'A banking risk analytics project built on free public data: FDIC quarterly bank financials, FRED macroeconomic series and SEC EDGAR filings. The ingestion layer stores raw API responses unchanged with checksum manifests; dbt metric definitions, source reconciliation and a Power BI dashboard comparing banks against interest rates and credit quality are in progress.',
           stack: ['Python', 'SQL', 'DuckDB', 'dbt', 'Power BI', 'FRED API', 'FDIC BankFind API', 'SEC EDGAR', 'GitHub Actions', 'pytest']
         },
         {
           title: 'Scale and Cost Benchmark Lab',
+          url: 'https://github.com/Dhanush-pv/Scale-and-Cost-Benchmark-Lab',
           description: 'A benchmarking framework comparing analytical database and processing engines across common SQL workloads. Reusable engine adapters and workload configurations provide a foundation for examining query execution time, resource utilisation, scalability and cost considerations.',
           stack: ['Python', 'SQL', 'DuckDB', 'ClickHouse', 'Apache Spark', 'Docker', 'Parquet', 'pytest', 'GitHub Actions']
         }
@@ -573,7 +587,7 @@ export default function Portfolio() {
               className="mt-12 flex gap-4"
             >
               <a
-                href="https://drive.google.com/file/d/1yCURBN3cfzdoSf3cCkwjB_JDH1WU1rkN/view?usp=sharing"
+                href="https://drive.google.com/file/d/1Okl1ckG05T6zuVgiv0hKXZ1Mqgh9uCP3/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105"
@@ -667,6 +681,17 @@ export default function Portfolio() {
                       </span>
                     ))}
                   </div>
+                  {project.url && (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-blue-700 hover:text-blue-900 transition-colors"
+                    >
+                      <Github size={16} />
+                      {t.projects.viewCode}
+                    </a>
+                  )}
                 </motion.div>
               ))}
             </div>
