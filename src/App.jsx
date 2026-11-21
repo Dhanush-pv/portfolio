@@ -36,11 +36,10 @@ const translations = {
           company: 'Jeeves Information Systems (Forterro)',
           duration: '06/2023 - 01/2025',
           points: [
-            'Entwickelte skalierbare Spark-ETL-Pipelines mit PySpark und Spark SQL und implementierte komplexe Joins, Window Functions und wiederverwendbare Transformationen für die Batch-Verarbeitung großer Datenmengen.',
-            'Konzipierte cloudbasierte Datenpipelines mit Amazon S3, AWS Glue und Amazon Redshift und transformierte Rohdaten in aufbereitete analytische Datensätze für Reporting und Business Intelligence.',
-            'Entwickelte analytische Datenmodelle und interaktive Power-BI-Dashboards mit SQL und DAX und überführte Geschäftsanforderungen in KPI-Reports und Performance-Kennzahlen.',
-            'Optimierte verteilte Datenverarbeitung und analytische Abfragen durch Partition Pruning, Predicate Pushdown, Broadcast Joins und Execution-Plan-Analyse.',
-            'Implementierte Infrastruktur-Provisionierung, automatisierte Tests und CI/CD-Workflows mit Terraform und GitHub Actions zur Verbesserung von Deployment-Konsistenz und Zuverlässigkeit.'
+            'Jeeves-ERP-Daten aus einer On-Premises-Datenbank mit ADF und einer Self-hosted Integration Runtime in den Azure Data Lake überführt. Pipelines und Datasets parametrisiert, sodass ein Design in Dev, Test und Prod lief, mit Key Vault für Zugangsdaten und ARM-basiertem CI/CD, sodass Releases ohne manuelle Anpassungen auskamen.',
+        'Datenschicht für eine Prognoseplattform für Gehalts- und Gemeinkosten aufgebaut: 20 SQL-Quellen in Delta-Tabellen der Ebenen Bronze, Silver, Gold und Platinum mit PySpark und Spark SQL überführt. Finanzteams erhielten Power-BI-Dashboards zur Analyse von Gehaltstrends, und CI/CD mit Azure DevOps verkürzte die Deployment-Zeit um 20 %.',
+        'Rohdateien aus S3 mit Glue-Jobs (PySpark) in kuratierte Redshift-Datensätze überführt und per Terraform in die Produktion gebracht. Automatisierte Validierung in jeder Stufe reduzierte den manuellen QA-Aufwand um 80 %.',
+        'Ursachen für langsame Spark-Jobs analysiert und mit Partitionierung, Predicate Pushdown, Broadcast Joins, Caching und Shuffle-Tuning behoben, wodurch die Rechenzeit bei über 1 Mio. Datensätzen pro Woche um 20 % sank. Die Lösungen als wiederverwendbare Python-Bibliotheken gebündelt, was die Entwicklung um 30 % beschleunigte.'
           ]
         },
         {
@@ -48,10 +47,9 @@ const translations = {
           company: 'Jeeves Information Systems (Forterro)',
           duration: '05/2022 - 06/2023',
           points: [
-            'Entwickelte Python-basierte ETL-Pipelines zur Datenaufnahme aus mehreren Quellsystemen, zur Datenbereinigung und Validierung sowie zum Laden strukturierter Datensätze in analytische Speichersysteme.',
-            'Erstellte PySpark-Transformationsworkflows zur Verarbeitung großer Datensätze, implementierte Deduplizierung und standardisierte Schemas für zuverlässige Analysen und Reports.',
-            'Führte explorative Datenanalysen mit Python, Pandas und SQL durch und nutzte Aggregationen, Joins und Window Functions zur Erkennung von Datenmustern und Unstimmigkeiten.',
-            'Implementierte automatisierte Datenqualitätsprüfungen, Schema-Validierung und Source-to-Target-Reconciliation zur Verbesserung der Datenkonsistenz und Zuverlässigkeit.'
+            'Python- und SQL-Pipelines entwickelt, die Lieferanten- und Bestelldaten in BigQuery luden (über 10.000 Datensätze pro Monat). Validierungsskripte für Bestellungen erkannten Abweichungen, bevor sie in Berichte gelangten, und Airflow-Aktualisierungen sparten über 6 Stunden manuelle Berichtserstellung pro Woche.',
+        'Berichtslogik von Domo (Magic ETL, MySQL-Dataflows, Views) nach Athena migriert, indem jede Transformation in SQL neu geschrieben wurde. Jedes Ergebnis mit dem Original abgeglichen und in einem Tracker protokolliert, anschließend die von Kollegen durchgeführten Migrationen auf Korrektheit geprüft.',
+        'PySpark-Pipelines auf S3 für rund 100 GB wöchentlicher Einzelhandels-Verkaufsdaten gebaut, mit Fakten- und Dimensionstabellen für ein Vertriebsanreizprogramm. Caching und Broadcast Joins beschleunigten die Verarbeitung um 30 %, und die Behebung von Datenqualitätsproblemen über alle Produkte hinweg reduzierte Datenlücken um 30 %.'
           ]
         }
       ]
@@ -149,35 +147,33 @@ const translations = {
     },
 
     experience: {
-      title: 'Professional Experience',
-      description: '3+ years of experience across data engineering, data processing, analytics and business intelligence, with a focus on Python, SQL, distributed data processing and cloud data platforms.',
-      download: 'Download Resume',
-      jobs: [
-        {
-          title: 'Data Engineer – Analytics & BI',
-          company: 'Jeeves Information Systems (Forterro)',
-          duration: '06/2023 - 01/2025',
-          points: [
-            'Developed scalable Spark ETL pipelines using PySpark and Spark SQL, implementing complex joins, window functions and reusable transformations for large-scale batch data processing.',
-            'Designed cloud-based data pipelines integrating Amazon S3, AWS Glue and Amazon Redshift, transforming raw data into curated analytical datasets for reporting and business intelligence.',
-            'Developed analytical data models and interactive Power BI dashboards using SQL and DAX, translating business requirements into KPI reports, performance metrics and business insights.',
-            'Optimised distributed data processing and analytical queries through partition pruning, predicate pushdown, broadcast joins and execution-plan analysis to improve pipeline and reporting performance.',
-            'Implemented infrastructure provisioning, automated testing and CI/CD workflows using Terraform and GitHub Actions to improve deployment consistency, scalability and reliability.'
-          ]
-        },
-        {
-          title: 'Associate Data Engineer',
-          company: 'Jeeves Information Systems (Forterro)',
-          duration: '05/2022 - 06/2023',
-          points: [
-            'Developed Python-based ETL pipelines to ingest data from multiple source systems, perform data cleansing and validation, and load structured datasets into analytical storage.',
-            'Built PySpark transformation workflows to process large datasets, implement deduplication and standardise schemas, preparing reliable datasets for downstream analytics and reporting.',
-            'Performed exploratory data analysis using Python, Pandas and SQL, applying aggregations, joins and window functions to identify data patterns, investigate discrepancies and generate actionable insights.',
-            'Implemented automated data quality checks, schema validation and source-to-target reconciliation to improve data consistency and reliability across processing workflows.'
-          ]
-        }
+  title: 'Professional Experience',
+  description: '3+ years of experience across data engineering, data processing, analytics and business intelligence, with a focus on Python, SQL, distributed data processing and cloud data platforms.',
+  download: 'Download Resume',
+  jobs: [
+    {
+      title: 'Data Engineer – Analytics & BI',
+      company: 'Jeeves Information Systems (Forterro)',
+      duration: '06/2023 - 01/2025',
+      points: [
+        'Pulled Jeeves ERP data out of an on-premises database into Azure Data Lake using ADF with a Self-hosted Integration Runtime. Parameterized pipelines and datasets so one design ran across dev, test, and prod, with Key Vault for credentials and ARM-based CI/CD, so releases needed no manual edits.',
+        'Built the data layer for a salary and overhead forecasting platform, bringing 20 SQL sources into Bronze, Silver, Gold, and Platinum Delta tables with PySpark and Spark SQL. Finance teams got Power BI dashboards to track salary trends, and Azure DevOps CI/CD cut deployment time by 20%.',
+        'Moved raw files from S3 into curated Redshift datasets with Glue (PySpark) jobs, and shipped them to production with Terraform. Added automated validation at each stage, which cut manual QA effort by 80%.',
+        'Found why large Spark jobs ran slowly and fixed it with partitioning, predicate pushdown, broadcast joins, caching, and shuffle tuning, cutting compute time by 20% on 1M+ records a week. Packaged the fixes as reusable Python libraries that sped up development by 30%.'
       ]
     },
+    {
+      title: 'Associate Data Engineer',
+      company: 'Jeeves Information Systems (Forterro)',
+      duration: '05/2022 - 06/2023',
+      points: [
+        'Built Python and SQL pipelines that loaded supplier and purchase order data into BigQuery (10,000+ records a month). PO validation scripts caught mismatches before they reached reports, and Airflow refreshes saved 6+ hours of manual reporting a week.',
+        'Migrated reporting logic from Domo (Magic ETL, MySQL dataflows, views) to Athena by rewriting each transformation in SQL. Reconciled every output against the original and logged results in a tracker, then reviewed migrations done by teammates for correctness.',
+        'Built PySpark pipelines on S3 for about 100 GB of weekly retail sales data, with fact and dimension tables behind a sales incentive program. Caching and broadcast joins sped processing by 30%, and fixing data quality issues across products cut data gaps by 30%.'
+      ]
+    }
+  ]
+},
 
     education: {
       title: 'Education',
@@ -587,7 +583,7 @@ export default function Portfolio() {
               className="mt-12 flex gap-4"
             >
               <a
-                href="https://drive.google.com/file/d/1Okl1ckG05T6zuVgiv0hKXZ1Mqgh9uCP3/view?usp=sharing"
+                href="https://drive.google.com/file/d/1mBGJRPLK6woBC4S8UWXXBts85hCVyKdD/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-all duration-300 hover:scale-105"
